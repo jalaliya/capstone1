@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+ 
+   <title>Bright Beginnings</title>
+</head>
+<body>
+ <div layout:fragment="content">
+  <p>
+   Welcome <span sec:authentication="principal.username">User</span>
+  </p>
+  <p>
+ You have the following Roles<span sec:authentication="principal.authorities">Roles</span>
+  </p>
+  <p>
+   <a th:href="@{/logout}">Logout</a>
+  </p>
+  </p>
+  <div sec:authorize="hasRole('ROLE_ADMIN')">
+   <h3>Welcome ADMIN</h3>
+   <p>
+    <a th:href="@{/admin/home}">Admin Home</a>
+   </p>
+  </div>
+  
+  
+  
+  <div sec:authorize="hasRole('ROLE_FACULTY')">
+   <h3>Welcome Faculty</h3>
+   <p>
+    <a th:href="@{/faculty/home}">FacultyHome</a>
+   </p>
+  </div>
+  
+  
+  
+  <div sec:authorize="hasRole('ROLE_STUDENT')">
+   <h3>Welcome Student</h3>
+   <p>
+    <a th:href="@{/Student/home}">Student Home</a>
+   </p>
+  </div>
+  
+  </div>
+
+</body>
+</html>
